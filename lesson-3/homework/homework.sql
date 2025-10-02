@@ -75,5 +75,43 @@ CREATE TABLE Categories (
 );
 select * from Categories
 
+#Use BULK INSERT to import data from a text file into the Products table.
+BULK INSERT Products
+FROM 'C:\Data\products.txt'
+WITH (
+    FIELDTERMINATOR = '|',     -- Change to your file’s field delimiter (e.g., ',', '\t')
+    ROWTERMINATOR = '\n',      -- Usually newline for row separation
+    FIRSTROW = 1               -- Set to 2 if the file has a header row
+);
+
+#Create a FOREIGN KEY in the Products table that references the Categories table.
+ALTER TABLE Products
+ADD CONSTRAINT FK_Products_Categories
+FOREIGN KEY (CategoryID)
+REFERENCES Categories(CategoryID);
+select * from Products
+
+#Explain the differences between PRIMARY KEY and UNIQUE KEY.
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,          -- One per table, no NULLs
+    Email VARCHAR(100) UNIQUE            -- Multiple UNIQUE keys allowed, allows NULL
+);
+select * from Employeese
+
+#Add a CHECK constraint to the Products table ensuring Price > 0.
+ALTER TABLE Products
+ADD CONSTRAINT CHK_Price_Positive
+CHECK (Price > 0);
+
+#Modify the Products table to add a column Stock (INT, NOT NULL).
+ALTER TABLE Products
+ADD Stock INT NOT NULL DEFAULT 0;
+select * from Products
+
+#Use the ISNULL function to replace NULL values in Price column with a 0.
+SELECT ProductID, ProductName, ISNULL(Price, 0) AS Price, Stock
+FROM Products;
+
+
 
 
