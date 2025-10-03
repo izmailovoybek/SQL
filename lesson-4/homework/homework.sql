@@ -52,3 +52,21 @@ FROM Employees;
 SELECT DISTINCT Category, Price
 FROM Products;
 
+#Write a query that filters the Employees table to show employees whose Age is either between 30 and 40 or DepartmentName = 'Marketing'.
+SELECT * FROM Employees
+WHERE (Age BETWEEN 30 AND 40) OR DepartmentName = 'Marketing';
+
+#Use OFFSET-FETCH to select rows 11 to 20 from the Employees table, ordered by Salary DESC.
+SELECT * FROM Employees
+ORDER BY Salary DESC
+OFFSET 10 ROWS
+FETCH NEXT 10 ROWS ONLY;
+
+#Write a query to display all products with Price <= 1000 and StockQuantity > 50, sorted by Stock in ascending order.
+SELECT * FROM Products
+WHERE Price <= 1000 AND StockQuantity > 50
+ORDER BY StockQuantity ASC;
+
+#Write a query that filters the Products table for ProductName values containing the letter 'e' using LIKE.
+SELECT * FROM Products
+WHERE ProductName LIKE '%e%';
