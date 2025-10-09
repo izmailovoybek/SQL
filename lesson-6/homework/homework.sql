@@ -51,3 +51,17 @@ insert into section1 values (1, 'Been'),
        (8, 'Andro')
 SELECT * FROM section1
 WHERE id % 2 <> 0;
+#Person with the smallest id (use the table in puzzle 3)
+SELECT *
+FROM section1
+ORDER BY id
+LIMIT 1;
+#Person with the highest id (use the table in puzzle 3)
+SELECT *
+FROM section1
+ORDER BY id DESC
+LIMIT 1;
+#People whose name starts with b (use the table in puzzle 3)
+SELECT *
+FROM section1
+WHERE name LIKE 'B%';
