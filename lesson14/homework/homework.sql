@@ -41,3 +41,26 @@ SELECT
 FROM Employees
 WHERE DATEDIFF(YEAR, HireDate, GETDATE()) > 10
   AND DATEDIFF(YEAR, HireDate, GETDATE()) < 15;
+#write a SQL query to find all dates' Ids with higher temperature compared to its previous (yesterday's) dates.(weather)
+SELECT 
+    w1.Id,
+    w1.RecordDate,
+    w1.Temperature
+FROM Weather w1
+JOIN Weather w2 
+    ON DATEADD(DAY, 1, w2.RecordDate) = w1.RecordDate  -- SQL Server syntax
+WHERE w1.Temperature > w2.Temperature;
+#Write an SQL query that reports the first login date for each player.(Activity)
+SELECT 
+    player_id,
+    MIN(event_date) AS first_login
+FROM Activity
+GROUP BY player_id;
+#Your task is to return the third item from that list.(fruits)
+SELECT TOP 1 name
+FROM (
+    SELECT TOP 3 name
+    FROM fruits
+    ORDER BY id
+) AS temp
+ORDER BY id DESC;
